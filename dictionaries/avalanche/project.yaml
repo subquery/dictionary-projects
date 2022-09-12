@@ -1,0 +1,31 @@
+specVersion: 1.0.0
+name: SubQuery Dictionary - Avalanche
+version: 1.0.0
+runner:
+  node:
+    name: "@subql/node-avalanche"
+    version: "*"
+  query:
+    name: "@subql/query"
+    version: "*"
+description: >-
+  A SubQuery Dictionary Project that provides increased indexing speed to all
+  projects
+repository: "https://github.com/subquery/avalanche-dictionary"
+schema:
+  file: "./schema.graphql"
+
+network:
+  endpoint: "https://avalanche.api.onfinality.io/public"
+  # endpoint:  https://api.avax-test.network
+  chainId: "mainnet"
+  subnet: "C"
+
+dataSources:
+  - kind: avalanche/Runtime
+    startBlock: 1
+    mapping:
+      file: "./dist/index.js"
+      handlers:
+        - handler: handleBlock
+          kind: avalanche/BlockHandler
